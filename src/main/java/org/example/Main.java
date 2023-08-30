@@ -1,7 +1,6 @@
 package org.example;
 
 import org.w3c.dom.Document;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
@@ -9,17 +8,18 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         System.out.println("Hello world!");
 
-        String bingNewsConFig = "";
-        BingNewsService.readBingNewsConfig(bingNewsConFig);
+        String bingNewsConFig = "src/main/resources/bingNewsConfig.json";
+        BingNewsService.readBingNewsConfig(new BingNewsConfig(bingNewsConFig));
+        String mapperCfg = "src/main/resources/mappingNews.json";
+        BingNewsService.readMapperConfig(new MappingConfig(mapperCfg));
         String trendingConfig = "";
         BingNewsService.readTrending(trendingConfig);
 
@@ -33,45 +33,44 @@ public class Main {
     }
 
     public static class BingNewsService {
-        public static void readBingNewsConfig(BingNewsConfig bingNewsConfig) {
-            var categories = bingNewsConfig.getCategories();
-            /*
-            loop each category, get each channel, get each
-             */
+        public static List readBingNewsConfig(BingNewsConfig config) {
+            var categories = config.getCategories();
+            //loop each category, get each channel, get each URL
             var listURL = new ArrayList<>();
             for (var cat : categories) {
                 for (var channel : cat.getChannels()) {
                     listURL.add(channel.getRssURL());
                 }
-                return;
             }
+            return listURL;
         }
 
-        public static void readMapperConfig(mappingConfig _mappingConfig) {
-            mappingConfig = _mappingConfig;
+        public static void readMapperConfig(MappingConfig _mappingConfig) {
+
         }
 
 
-        public static NodeList getAllArticles(BingNewsConfig bingNewsConfig) throws ParserConfigurationException, IOException, SAXException {
+        public static List<Articles> getAllArticles() throws ParserConfigurationException, IOException, SAXException {
+            String cfgPath = "";
             //TODO: read all RSS from JSON
-            List<String> listURLs = readBingNewsConfig();
+            List<String> listURLs = readBingNewsConfig(new BingNewsConfig(cfgPath));
 
             //TODO: read all items from each URL --> Add to NodeList
             //TODO: From NodeList -> Parse data to get each item --> Add to listItems
             //TODO: Map Item to Article
-//            List<Articles> listItems = new ArrayList<>();
-//            for (var item : listURLs) {
-//                NodeList nodeList =  getItemsFromRssUrl(item);
-//                for (int i = 0; i <= nodeList.getLength(); i++) {
-//                    Articles atc = parseData();
-//                    listItems.add(atc);
-//                }
-//            }
-            return null;
+            List<Articles> listItems = new ArrayList<>();
+            for (var item : listURLs) {
+                NodeList nodeList = getItemsFromRssUrl(item);
+                for (int i = 0; i <= nodeList.getLength(); i++) {
+                    Articles atc = parseData();
+                    listItems.add(atc);
+                }
+            }
+            return listItems;
         }
 
-        public static Articles parseData(Node item, mappingConfig mapCfg) {
-        return null;
+        public static Articles parseData() {
+            return null;
         }
 
         public static NodeList getItemsFromRssUrl(String url) throws ParserConfigurationException, IOException, SAXException {
@@ -83,6 +82,7 @@ public class Main {
         }
 
         public static List<AdTopic> getAllAdTopic() {
+
             return null;
         }
 
@@ -106,6 +106,7 @@ public class Main {
 
         }
     }
+
     public static class Articles {
     }
 
@@ -115,6 +116,9 @@ public class Main {
     public static class FinancialInfo {
     }
 
-    public static class mappingConfig {
+    public static class MappingConfig {
+        public MappingConfig(String config) {
+
+        }
     }
 }

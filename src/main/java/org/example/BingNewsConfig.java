@@ -3,6 +3,9 @@ package org.example;
 import java.util.List;
 
 public class BingNewsConfig {
+    public BingNewsConfig(String config) {
+
+    }
     private List<Category> categories;
 
     public List<Category> getCategories() {
