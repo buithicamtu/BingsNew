@@ -15,7 +15,7 @@ class MainTest {
     @org.junit.jupiter.api.Test
     public void getItemsFromRssUrl() throws ParserConfigurationException, IOException, SAXException {
         String path = "https://vnexpress.net/rss/tin-moi-nhat.rss";
-        NodeList list = Main.BingNewsService.getItemsFromRssUrl(path);
+        NodeList list = BingNewsService.getItemsFromRssUrl(path);
         assertNotNull(list);
     }
 

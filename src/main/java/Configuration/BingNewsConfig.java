@@ -1,4 +1,4 @@
-package org.example;
+package Configuration;
 
 import java.util.List;
 

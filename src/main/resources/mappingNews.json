@@ -1,0 +1,38 @@
+{
+  "channels": [
+    {
+      "channelId": "VN Express",
+      "mapSrcDes": {
+        "Title": "title",
+        "pubDate": "pubDate",
+        "imgUrl": "description",
+        "sourceLink": "link",
+        "guid": "guid"
+      }
+    },
+    {
+      "channelId": "Thanh Nien",
+      "mapSrcDes": {
+        "Title": "title",
+        "pubDate": "pubDate",
+        "guid": "guid",
+        "sourceLink": "link",
+        "imgUrl": "description#src"
+      }
+    },
+    {
+      "channelId": "The New York Times",
+      "mapSrcDes": {
+        "Title": "title",
+        "pubDate": "pubDate",
+        "description": "description",
+        "guid": "guid",
+        "sourceLink": "link",
+        "imgUrl": "enclosure#url",
+        "creator": "dc:creator",
+        "category": "category",
+        "img": "media:content"
+      }
+    }
+  ]
+}
