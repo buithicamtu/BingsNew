@@ -1,7 +1,7 @@
 {
   "channels": [
     {
-      "channelId": "VN Express",
+      "channel": "VN Express",
       "mapSrcDes": {
         "Title": "title",
         "pubDate": "pubDate",
@@ -11,7 +11,7 @@
       }
     },
     {
-      "channelId": "Thanh Nien",
+      "channel": "Thanh Nien",
       "mapSrcDes": {
         "Title": "title",
         "pubDate": "pubDate",
@@ -21,7 +21,7 @@
       }
     },
     {
-      "channelId": "The New York Times",
+      "channel": "The New York Times",
       "mapSrcDes": {
         "Title": "title",
         "pubDate": "pubDate",

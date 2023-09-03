@@ -1,6 +1,7 @@
 package org.example;
 
 import Configuration.BingNewsConfig;
+import Configuration.Channel;
 import Configuration.MappingConfig;
 import News.AdTopic;
 import News.Articles;
@@ -29,7 +30,7 @@ public class BingNewsService {
     }
 
     //Get list URL from BingNewsConfig
-    public static List<BingNewsConfig.Channel> getListChannel(BingNewsConfig config) {
+    public static List<Channel> getListChannel(BingNewsConfig config) {
         var categories = config.getCategories();
         //loop each category, get each channel, get each URL
         var listChannels = new ArrayList<>();
@@ -41,11 +42,10 @@ public class BingNewsService {
         return null;
     }
 
-    // How to get URL in cat(1) + channel (2)?
     public static List<Articles> getAllArticles() throws ParserConfigurationException, IOException, SAXException {
         String cfgPath = "src\\main\\resources\\bingNewsConfig.json";
         //TODO: get all RSS URL from JSON
-        List<BingNewsConfig.Channel> listChannel = getListChannel(new BingNewsConfig(cfgPath));
+        List<Channel> listChannel = getListChannel(new BingNewsConfig(cfgPath));
 
         //TODO: Get all items from each URL --> Add to NodeList
         List<Articles> listItems = new ArrayList<>();
@@ -75,42 +75,42 @@ public class BingNewsService {
                 if (child.getNodeType() == Node.ELEMENT_NODE) {
                     String tagName = child.getNodeName();
                     String tagValue = child.getTextContent();
-                    //System.out.println(tagName + ": " + tagValue);
                 }
             }
-            //System.out.println();
         }
         return listItems;
     }
-    public static List<AdTopic> getAllAdTopic () {
+
+    public static List<AdTopic> getAllAdTopic() {
 
         return null;
     }
 
-    public static List<Articles> getTopNews () {
+    public static List<Articles> getTopNews() {
         //Top News: get the newest News
         // base on public time (compared to Current time)
         return null;
     }
 
-    public static List<Articles> getTrendingNews () {
+    public static List<Articles> getTrendingNews() {
         //Top News: get from Google Trending RSS
         //Get URL of GgTrend in bingNewsConfig
         // continue use get All Articles
         return null;
     }
 
-    public static List<WeatherInfo> getWeatherInfo () {
+    public static List<WeatherInfo> getWeatherInfo() {
         return null;
     }
 
-    public static List<FinancialInfo> getFinancialInfo () {
+    public static List<FinancialInfo> getFinancialInfo() {
         return null;
     }
 
-    public static void readTrending (String trendingConfig){
+    public static void readTrending(String trendingConfig) {
 
     }
-    public static void readMappingConfig (MappingConfig mappingConfig){
+
+    public static void readMappingConfig(MappingConfig mappingConfig) {
     }
 }
